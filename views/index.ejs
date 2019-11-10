@@ -1,9 +1,101 @@
 <!DOCTYPE html>
-<html>
-  <% include ./partials/head %>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <% include ./partials/scripts %>
+    <title>QR Promos</title>
+    <style>
+      #card {
+        margin: 3rem;
+        width: 350px;
+        height: 450px;
+      }
+
+      .card-header {
+        display: flex;
+        justify-content: center;
+        border: none;
+        background-color: rgb(221, 244, 251);
+      }
+
+      .card-info {
+        display: flex;
+        justify-content: center;
+        margin-top: 2rem;
+      }
+
+      .card-click {
+        display: flex;
+        justify-content: center;
+        margin-top: 4rem;
+        border: 1px solid;
+        border-radius: 15px;
+        background-color: rgb(173, 218, 233);
+      }
+
+      .front {
+        padding: 1rem;
+        background: rgb(221, 244, 251);
+        color: rgb(0, 0, 0);
+        border: 1px solid;
+        border-radius: 15px;
+      }
+
+      .back {
+        padding: 1rem;
+        background: #3bb357;
+        color: rgb(0, 0, 0);
+        border: 1px solid;
+        border-radius: 15px;
+      }
+    </style>
+  </head>
   <body>
-    <% include ./partials/nav %>
-    <% include ./partials/main %>
-    <% include ./partials/footer %>
+    <nav
+      id="nav"
+      class="navbar navbar-expand flex-column flex-sm-row d-flex justify-content-between align-items-sm-center navbar-light bg-light">
+      <a class="navbar-brand" href="#"><h3 class="nav-title">QR Promos</h3></a>
+      <form class="form-inline my-2 my-lg-0">
+        <input
+          class="form-control mr-sm-2"
+          type="search"
+          placeholder="Search businesses"
+          aria-label="Search"/>
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+          Search
+        </button>
+      </form>
+      <button class="btn btn-success my-2 my-sm-0" type="submit">
+        Post your promo!
+      </button>
+    </nav>
+    <div id="card">
+      <!-- <div class="front">
+        <img src="images/promo.jpg" style="width: 100%;" />
+        <h4 class="card-header">Business Name</h4>
+        <p class="card-info">Information about the promo.</p>
+        <p class="card-click">Click to see QR Code</p>
+      </div> -->
+      <div class="back">
+        <input type="text" id="qr-data" onchange="generateQR()">
+        <div id="qrcode"></div>
+      </div>
+    </div>
   </body>
+  <script src="qrcode.min.js"></script>
+  <script>
+    // $('#card').flip();
+
+    var qrdata = document.getElementById('qr-data');
+    var qrcode = new QRCode(document.getElementById("qrcode"));
+
+    function generateQR() {
+      var data = qrdata.value;
+      
+      qrcode.makeCode(data);
+    }
+
+  </script>
 </html>
