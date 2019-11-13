@@ -6,51 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <% include ./partials/scripts %>
     <title>QR Promos</title>
-    <style>
-      #card {
-        margin: 3rem;
-        width: 350px;
-        height: 450px;
-      }
-
-      .card-header {
-        display: flex;
-        justify-content: center;
-        border: none;
-        background-color: rgb(221, 244, 251);
-      }
-
-      .card-info {
-        display: flex;
-        justify-content: center;
-        margin-top: 2rem;
-      }
-
-      .card-click {
-        display: flex;
-        justify-content: center;
-        margin-top: 4rem;
-        border: 1px solid;
-        border-radius: 15px;
-        background-color: rgb(173, 218, 233);
-      }
-
-      .front {
-        padding: 1rem;
-        background: rgb(221, 244, 251);
-        color: rgb(0, 0, 0);
-        border: 1px solid;
-        border-radius: 15px;
-      }
-
-      .back {
-        padding: 1rem;
-        background: #3bb357;
-        color: rgb(0, 0, 0);
-        border: 1px solid;
-        border-radius: 15px;
-      }
-    </style>
   </head>
   <body>
     <nav
@@ -72,30 +27,23 @@
       </button>
     </nav>
     <div id="card">
-      <!-- <div class="front">
-        <img src="images/promo.jpg" style="width: 100%;" />
+      <div class="front">
+        <img src="images/promo.jpg"/ style="width: 100%;">
         <h4 class="card-header">Business Name</h4>
         <p class="card-info">Information about the promo.</p>
-        <p class="card-click">Click to see QR Code</p>
-      </div> -->
+        <div class="card-button">Click to see QR code</div>
+      </div>
       <div class="back">
-        <input type="text" id="qr-data" onchange="generateQR()">
-        <div id="qrcode"></div>
+        <img src="<%= qr %>" style="width: 100%;" />
+        <h3>Scan Me!</h3>
       </div>
     </div>
+    <div id="output"></div>
+    <script>
+      $("#card").on("click", function() {
+        $(this).flip();
+        $(".back").css("visibility", "visible");
+      });
+    </script>
   </body>
-  <script src="qrcode.min.js"></script>
-  <script>
-    // $('#card').flip();
-
-    var qrdata = document.getElementById('qr-data');
-    var qrcode = new QRCode(document.getElementById("qrcode"));
-
-    function generateQR() {
-      var data = qrdata.value;
-      
-      qrcode.makeCode(data);
-    }
-
-  </script>
 </html>

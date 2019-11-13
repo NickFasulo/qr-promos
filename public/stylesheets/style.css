@@ -1,8 +1,50 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+#card {
+  margin: 3rem;
+  width: 350px;
+  height: 450px;
 }
 
-a {
-  color: #00B7FF;
+.card-header {
+  display: flex;
+  justify-content: center;
+  border: none;
+  background-color: rgb(221, 244, 251);
+}
+
+.card-info {
+  display: flex;
+  justify-content: center;
+  margin: 1rem;
+}
+
+.card-button {
+  display: flex;
+  justify-content: center;
+  margin-top: 6rem;
+  border: 1px solid;
+  border-radius: 15px;
+  background-color: rgb(173, 218, 233);
+}
+
+.front {
+  padding: 1rem;
+  background: rgb(221, 244, 251);
+  color: rgb(0, 0, 0);
+  border: 1px solid;
+  border-radius: 15px;
+}
+
+.back {
+  padding: 1rem;
+  background: #3bb357;
+  color: rgb(0, 0, 0);
+  border: 1px solid;
+  border-radius: 15px;
+  visibility: hidden;
+}
+
+.back h3 {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
 }
