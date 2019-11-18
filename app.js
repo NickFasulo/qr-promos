@@ -15,7 +15,6 @@ let MongoStore = require("connect-mongo")(session);
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users/users");
 
-
 require("dotenv").config();
 
 mongoose
@@ -58,6 +57,7 @@ app.use(
   })
 );
 
+// Routes
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 

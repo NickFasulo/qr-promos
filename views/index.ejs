@@ -8,41 +8,27 @@
     <title>QR Promos</title>
   </head>
   <body>
-    <nav
-      id="nav"
-      class="navbar navbar-expand flex-column flex-sm-row d-flex justify-content-between align-items-sm-center navbar-light bg-light">
-      <a class="navbar-brand" href="#"><h3 class="nav-title">QR Promos</h3></a>
-      <form class="form-inline my-2 my-lg-0">
-        <input
-          class="form-control mr-sm-2"
-          type="search"
-          placeholder="Search businesses"
-          aria-label="Search"/>
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-          Search
-        </button>
-      </form>
-      <button class="btn btn-success my-2 my-sm-0" type="submit">
-        Post your promo!
-      </button>
-    </nav>
-    <div id="card">
-      <div class="front">
-        <img src="images/promo.jpg"/ style="width: 100%;">
-        <h4 class="card-header">Business Name</h4>
-        <p class="card-info">Information about the promo.</p>
-        <div class="card-button">Click to see QR code</div>
+    <% include ./partials/nav %>
+    <main>
+      <div class="scene scene--card">
+        <div class="card">
+          <div class="card__face card__face--front">
+            <img src="images/promo.jpg"/ style="width: 100%;">
+            <h4 class="card-header">Business Name</h4>
+            <p class="card-info">Information about the promo.</p>
+            <div class="card-button">Click to see QR code</div>
+          </div>
+          <div class="card__face card__face--back">
+            <img src="<%= qr %>" style="width: 100%;" />
+            <h3 class="scan-me">Scan Me!</h3>
+          </div>
+        </div>
       </div>
-      <div class="back">
-        <img src="<%= qr %>" style="width: 100%;" />
-        <h3>Scan Me!</h3>
-      </div>
-    </div>
-    <div id="output"></div>
+    </main>
     <script>
-      $("#card").on("click", function() {
-        $(this).flip();
-        $(".back").css("visibility", "visible");
+      const card = document.querySelector(".card");
+      card.addEventListener("click", () => {
+        card.classList.toggle("is-flipped");
       });
     </script>
   </body>
