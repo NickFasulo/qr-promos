@@ -7,6 +7,7 @@ const signupValidation = require("./utils/signupValidation");
 
 const User = require("./models/User");
 
+
 // auth login
 router.get("/login", (req, res) => {
   if (req.isAuthenticated()) res.redirect("/");
@@ -14,14 +15,16 @@ router.get("/login", (req, res) => {
   res.render("login");
 });
 
-router.post("/login", (req, res) => {
+router.post(
   "/login",
-    passport.authenticate("local-login", {
-      successRedirect: "/",
-      failureRedirect: "/users/login",
-      failureFlash: true
-    });
-});
+  passport.authenticate("local-login", {
+    successRedirect: "/",
+    failureRedirect: "login",
+    failureFlash: true
+  })
+);
+
+
 
 // auth logout
 router.get("/logout", (req, res) => {
@@ -30,14 +33,18 @@ router.get("/logout", (req, res) => {
   res.render("logout");
 });
 
-// register
-router.get("/register", (req, res) => {
-  res.render("register");
+
+
+// register-as
+router.get("/register-as", (req, res) => {
+  res.render("register-as");
 });
 
-router.post("/register", (req, res) => {
-  res.render("register");
+router.post("/register-as", (req, res) => {
+  res.redirect("login");
 });
+
+
 
 // auth register user
 router.get("/register-user", (req, res) => {
@@ -48,11 +55,13 @@ router.get("/register-user", (req, res) => {
 
 router.post("/register-user", signupValidation, userController.signup);
 
+
+
 // auth register business
 router.get("/register-business", (req, res) => {
   if (req.isAuthenticated()) return res.redirect("/");
 
-  res.render("register-business", { error_msg: null });
+  res.render("/register-business", { error_msg: null });
 });
 
 router.post("/register-business", signupValidation, userController.signup);

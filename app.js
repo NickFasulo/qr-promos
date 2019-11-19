@@ -60,7 +60,7 @@ app.use("/users", usersRouter);
 
 app.use(passport.initialize());
 app.use(passport.session());
-// require("./lib/passport/passport")(passport);
+require("./lib/passport/passport")(passport);
 
 app.use(
   expressValidator({
