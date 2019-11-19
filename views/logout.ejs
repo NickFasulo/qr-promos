@@ -5,20 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <% include ./partials/scripts %>
-    <title>User Login</title>
+    <title>User Logout</title>
   </head>
   <body>
     <% include ./partials/nav %>
-    <main>
-      <header>
-        <h1>Register as a...</h1>
-      </header>
-      <br/>
-      <a href="register-user">user</a>
-      <br/>
-      <h2>- or -</h2>
-      <br/>
-      <a href="register-business">business</a>
-    </main>
+    <br/>
+    <br/>
+    <br/>
+    <h1>Logging Out...</h1>
   </body>
+  <script>
+    let xhttp = new XMLHttpRequest();
+    setTimeout(() => {
+      console.log("sending request for redirect");
+      window.location = "/";
+    }, 2000);
+  </script>
 </html>

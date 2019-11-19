@@ -18,13 +18,10 @@ const usersRouter = require("./routes/users/users");
 require("dotenv").config();
 
 mongoose
-  .connect(
-    "mongodb+srv://NickF:olusaf12@nickfasulo-dram8.mongodb.net/test?retryWrites=true&w=majority",
-    {
-      useNewUrlParser: true,
-      useUnifiedTopology: true
-    }
-  )
+  .connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
   .then(() => console.log("MongoDB Connected"))
   .catch(err => console.log(`MongoDB Error: ${err}`));
 

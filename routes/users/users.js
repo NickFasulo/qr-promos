@@ -1,53 +1,60 @@
 const express = require("express");
+const passport = require("passport");
 const router = express.Router();
-const bcrypt = require("bcrypt");
 
-users = [];
+const userController = require("./controllers/userController");
+const signupValidation = require("./utils/signupValidation");
+
+const User = require("./models/User");
 
 // auth login
 router.get("/login", (req, res) => {
+  if (req.isAuthenticated()) res.redirect("/");
+
   res.render("login");
 });
 
 router.post("/login", (req, res) => {
-  res.render("login");
+  "/login",
+    passport.authenticate("local-login", {
+      successRedirect: "/",
+      failureRedirect: "/users/login",
+      failureFlash: true
+    });
 });
 
 // auth logout
 router.get("/logout", (req, res) => {
   // handle with passport
-  res.send("logging out");
+  req.logOut();
+  res.render("logout");
 });
 
-// auth register
+// register
 router.get("/register", (req, res) => {
-  // handle with passport
   res.render("register");
 });
 
-router.post("/register", async (req, res) => {
-  try {
-    const hashedPassword = await bcrypt.hash(req.body.password, 10);
-  } catch {}
-  req.body.email;
+router.post("/register", (req, res) => {
+  res.render("register");
 });
 
 // auth register user
 router.get("/register-user", (req, res) => {
-  res.render("register-user");
+  if (req.isAuthenticated()) return res.redirect("/");
+
+  res.render("register-user", { error_msg: null });
 });
 
-router.post("/register-user", (req, res) => {
-  res.render("register-user");
-});
+router.post("/register-user", signupValidation, userController.signup);
 
 // auth register business
 router.get("/register-business", (req, res) => {
-  res.render("register-business");
+  if (req.isAuthenticated()) return res.redirect("/");
+
+  res.render("register-business", { error_msg: null });
 });
 
-router.post("/register-business", (req, res) => {
-  res.render("register-business");
-});
+router.post("/register-business", signupValidation, userController.signup);
 
 module.exports = router;

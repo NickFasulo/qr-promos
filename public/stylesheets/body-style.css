@@ -18,6 +18,7 @@ main {
 h1 {
   display: flex;
   justify-content: center;
+  margin-top: 3rem;
 }
 
 .secondary-header {
@@ -39,8 +40,8 @@ form {
   margin-top: 1.5rem;
 }
 
-.form-button button, main a{
-  font-size: 1.2rem;
+.form-button button, main a {
+  font-size: 1.5rem;
   padding: .5rem;
   color: white;
   text-shadow: 1px 1px black;

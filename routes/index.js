@@ -4,7 +4,7 @@ const router = express.Router();
 const qrController = require('./controllers/qrController')
 
 /* GET home page. */
-router.get("/", function(req, res, next) {
+router.get("/", (req, res, next) => {
   qrController.generateQR('hackingpmp.com')
     .then(qr => {
       res.render("index", { "qr": qr });
